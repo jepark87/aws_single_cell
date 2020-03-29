@@ -8,8 +8,13 @@ sudo apt-get update
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 sudo add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/'
 sudo apt-get update
+
 #install R, and various useful things
 sudo apt-get -y install r-base build-essential xorg-dev libreadline-dev libc6-dev zlib1g-dev libbz2-dev liblzma-dev libcurl4-openssl-dev libcairo2-dev libpango1.0-dev tcl-dev tk-dev openjdk-8-jdk openjdk-8-jre gfortran
+sudo apt install build-essential python-dev libxml2 libxml2-dev zlib1g-dev
+#install some R packages
+sudo R -e 'install.packages("BiocManager"); BiocManager::install(c("edgeR","DESeq2","BiocParallel","scater","scran","SC3","monocle","destiny","pcaMethods","zinbwave","GenomicAlignments","RSAMtools","M3Drop","DropletUtils","switchde","biomaRt"))'
+sudo R -e 'install.packages(c("tidyverse","devtools","Seurat","vcfR","igraph","car","ggpubr","rJava"))'
 
 #many things of general utility
 sudo apt-get -y install samtools bcftools bedtools htop parallel sshfs
@@ -22,9 +27,13 @@ sudo apt-get -y install python3-pip
 #numpy/Cython need to be installed separately before everything else because otherwise GPy/velocyto get sad
 sudo apt-get -y install libfftw3-dev python3-tk
 sudo pip3 install numpy Cython
-sudo pip3 install GPy scanpy sklearn jupyter velocyto snakemake pytest fitsne plotly ggplot cmake jupyterlab spatialde polo rpy2 bbknn scvelo wot cellphonedb pyscenic
+pip3 install scikit-build
+sudo pip3 install GPy scanpy sklearn jupyter velocyto snakemake pytest fitsne plotly ggplot cmake jupyterlab spatialde polo rpy2 bbknn scvelo cellphonedb pyscenic
+# sudo pip3 install wot (torch -> memory error in t2.micro)
 #scanpy is incomplete. the docs argument you need to install these by hand, in this order
-sudo pip3 install python-igraph
+sudo apt install bison flex automake autoconf
+## if you get error installing python-igrapy, upgrade pip3
+sudo pip3 install python-igraph 
 sudo pip3 install louvain leidenalg
 sudo pip3 install scrublet cutadapt
 #...and this also helps with run time, but is buried as a hint on one of the documentation pages
