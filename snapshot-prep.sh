@@ -1,5 +1,4 @@
 #preparing a worker cloud for picture day!
-#(as in, the stuff that can be done pre-snapshot, so no disc mounting etc)
 
 #gotta do this to kick off proceedings. things change fast in apt land
 sudo apt-get update
